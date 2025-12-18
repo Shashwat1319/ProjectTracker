@@ -8,7 +8,7 @@ const Dashboared = () => {
     useEffect(()=>{
         const fetchdata =async()=>{
             try{
-                const response = await axios.get("http://localhost:8000/dashboard",{
+                const response = await axios.get("https://projecttracker-zke1.onrender.com/dashboard",{
                     headers:{
                         Authorization: `Bearer ${token}`
                     }

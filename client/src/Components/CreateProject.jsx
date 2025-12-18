@@ -17,7 +17,7 @@ const CreateProject = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try {
-            const response = await axios.post("http://localhost:8000/api/projects",{
+            const response = await axios.post("https://projecttracker-zke1.onrender.com/api/projects",{
                 clientName,
                 projectName,
                 budget,
