@@ -1,7 +1,8 @@
+import React from "react";
+
 import './App.css'
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap.bundle.js"
-import React from "react";
 import { BrowserRouter, Routes,Route, Navigate } from 'react-router-dom'
 import Home from './Components/Home'
 import Signup from './Components/Auth/Signup'
@@ -54,7 +55,8 @@ removeExpiredToken();
           <Route path="projectdetails/:id" element={<ProjectDetails />} />
         </Route>
           
-        <Route path='*' element="Page not found"/>
+        <Route path="*" element={<h1>Page not found</h1>} />
+
       </Routes>
       </BrowserRouter>
     </>
