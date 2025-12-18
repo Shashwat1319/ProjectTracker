@@ -1,7 +1,7 @@
 import './App.css'
 import "bootstrap/dist/css/bootstrap.css"
 import "bootstrap/dist/js/bootstrap.bundle.js"
-
+import React from "react";
 import { BrowserRouter, Routes,Route, Navigate } from 'react-router-dom'
 import Home from './Components/Home'
 import Signup from './Components/Auth/Signup'
