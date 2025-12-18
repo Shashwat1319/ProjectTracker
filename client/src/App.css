@@ -1,0 +1,64 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.login{
+   
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 1rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary {
+      background: #667eea;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #5a6fdc;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #667eea;
+    }
+}
+ .CPro{
+    border-radius: 1rem;
+    max-width: 420px;
+    width: 100%;
+    background-color: #fdf4f4 !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+ }
+.sidebar {
+  background: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px 10px;
+  border-right: 1px solid #ddd;
+}
+
+.menu-item {
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  background: #0d6ecf;
+}
+
+.menu-item.active {
+  background: #0d6efd;
+  color: white;
+}
+
+.detailpage:hover{
+  background: yellow;
+}
