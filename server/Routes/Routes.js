@@ -159,4 +159,26 @@ const viewproject =async(req,res)=>{
         }
 }
 
-export  {signup,login,addProject,viewproject,dashboard}
+
+const deleteProject=async(req,res)=>{
+    try{
+        const {id} = req.params
+        const project = await addProjectModal.findOneAndDelete({_id:id,userid:req.user._id})
+        console.log(project)
+        if(!project){
+           return res.status(404).json({
+                success:false,
+                msg:"Project Not Found!!"
+            })
+        }
+
+        res.status(200).json({
+            msg:"Project Delete Successfully!!",
+            projectId:id
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export  {signup,login,addProject,viewproject,dashboard,deleteProject}

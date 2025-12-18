@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useParams, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
 const ProjectDetails = () => {
   const { state } = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
+  const token = localStorage.getItem("token")
 
-  // Safety check (VERY IMPORTANT)
   if (!state) {
     return (
       <div className="text-center mt-5">
@@ -17,7 +17,7 @@ const ProjectDetails = () => {
       </div>
     );
   }
-  const DeleteProject = ()=>{
+  const DeleteProject =()=>{
         Swal.fire({
           title:"Delete Project",
           text:"Are You Sure you want to delete this project",
@@ -29,9 +29,24 @@ const ProjectDetails = () => {
         }).then(async(result)=>{
           if(result.isConfirmed){
             try{
-              await axios.delete("http://localhost:8000/api/dashboard/")
+             const response =  await axios.delete(`https://projecttracker-zke1.onrender.com/api/projects/${id}`,{
+                headers:{
+                  Authorization: `Bearer ${token}`
+                }
+              })
+              console.log(response)
+              Swal.fire({
+                title:"Deleted!",
+                text:"Project remove Successfully!!",
+                icon:"success"
+              })
+              navigate("/pages/dashboard/viewproject")
             }catch(err){
-            
+              Swal.fire({
+                title:"Error",
+                text:err.response.data.msg,
+                icon:"error"
+              })
           }
           }
         })
@@ -40,7 +55,7 @@ const ProjectDetails = () => {
   return (
     <div className="card shadow-lg border-0">
       <div className="card-body p-4">
-        {/* HEADER */}
+
         <h2 className="text-center fw-bold mb-4">Project Details</h2>
 
         <div className="row g-3">
