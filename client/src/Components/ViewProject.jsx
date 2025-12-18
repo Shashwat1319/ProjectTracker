@@ -12,7 +12,7 @@ const ViewProject = () => {
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/projects",{
+        const response = await axios.get("https://projecttracker-zke1.onrender.com/api/projects",{
                     headers:{
                         Authorization: `Bearer ${token}`
                     }
