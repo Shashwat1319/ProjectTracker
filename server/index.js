@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import {signup,login,addProject, viewproject, dashboard,deleteProject} from "./Routes/Routes.js";
 import connectDB from "./DbConfig/Dbconfig.js"
-import verifyToken from "./verifyToken.js";
+
 import "dotenv/config";
 
 
@@ -14,14 +13,6 @@ app.use(express.json());
 
 connectDB()
 
-
-
-app.post("/api/signup",signup);
-app.post("/api/login",login)
-app.post("/api/projects",verifyToken,addProject)
-app.get("/api/dashboard",verifyToken,dashboard)
-app.get("/api/projects",verifyToken,viewproject)
-app.delete("/api/projects/:id",verifyToken,deleteProject)
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running at port : ${process.env.PORT}`);

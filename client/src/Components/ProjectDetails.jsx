@@ -1,11 +1,26 @@
 import axios from "axios";
 import { useLocation, useParams, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
+import { useState } from "react";
+
 const ProjectDetails = () => {
   const { state } = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
+
+const [form, setForm] = useState({
+  Client: state.Client,
+  Project: state.Project,
+  Status: state.Status,
+  Budget: state.Budget,
+  DueDate: state.DueDate
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setForm({ ...form, [name]: value });
+};
 
   if (!state) {
     return (
@@ -51,6 +66,24 @@ const ProjectDetails = () => {
           }
         })
   }
+const UpdateProject = async () => {
+  try {
+    const response = await axios.put(
+      `https://projecttracker-zke1.onrender.com/api/projects/${id}`,
+      form,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log(response.data);
+    Swal.fire("Updated!", "Project updated successfully.", "success");
+    navigate("/pages/dashboard/viewproject");
+  } catch (err) {
+    Swal.fire(
+      "Error",
+      err.response?.data?.msg || "Failed to update project",
+      "error"
+    );
+  }
+};
 
   return (
     <div className="card shadow-lg border-0">
@@ -59,13 +92,49 @@ const ProjectDetails = () => {
         <h2 className="text-center fw-bold mb-4">Project Details</h2>
 
         <div className="row g-3">
-          <Detail label="Client" value={state.Client} />
-          <Detail label="Project" value={state.Project} />
-          <Detail label="Status" value={state.Status} badge />
-          <Detail label="Budget" value={`₹ ${state.Budget}`} />
-          <Detail label="Due Date" value={state.DueDate} />
+          <Detail label="Client" value={
+  <input
+    className="form-control"
+    name="Client"
+    value={form.Client}
+    onChange={handleChange}
+  />
+} />
+<Detail label="Project" value={
+  <input
+    className="form-control"
+    name="Project"
+    value={form.Project}
+    onChange={handleChange}
+  />
+} />
+<Detail label="Status" value={
+  <input
+    className="form-control"
+    name="Status"
+    value={form.Status}
+    onChange={handleChange}
+  />
+} />
+<Detail label="Budget" value={
+  <input
+    className="form-control"
+    name="Budget"
+    value={form.Budget}
+    onChange={handleChange}
+  />
+} />
+<Detail label="Due Date" value={
+  <input
+    className="form-control"
+    name="DueDate"
+    value={form.DueDate}
+    onChange={handleChange}
+  />
+} />
+
           <div className="row">
-            <div className="col-3"><div className="btn btn-success p-3 mt-4 w-100">Update</div></div>
+            <div className="col-3"><div className="btn btn-success p-3 mt-4 w-100" onClick={UpdateProject}>Update</div></div>
             <div className="col-3"></div>
             <div className="col-3"></div>
             <div className="col-3"><div className="btn btn-danger p-3 mt-4 w-100" onClick={DeleteProject}>Delete</div></div>
