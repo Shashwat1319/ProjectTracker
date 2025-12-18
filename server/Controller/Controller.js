@@ -178,7 +178,36 @@ const deleteProject=async(req,res)=>{
         })
     }catch(err){
         console.log(err)
+        res.status(500).json({
+        success:false,
+        msg:"Server Error"
+      })
     }
 }
 
-export  {signup,login,addProject,viewproject,dashboard,deleteProject}
+
+const updateProject=async(req,res)=>{
+    try{
+        const {id} = req.params
+        const UpdateResult = req.body
+        const project = await addProjectModal.findOneAndUpdate({_id:id,userid:req.user._id},UpdateResult)
+        if(!project){
+            return res.status(404).json({
+                msg:"Project is not Found",
+                success:false
+            })
+        }
+        res.status(200).json({
+            success:true,
+            msg:"Project update Successfully"
+        })
+
+    }catch(err){
+        res.status(500).json({
+        success:false,
+        msg:"Server Error"
+      })
+    }
+}
+
+export  {signup,login,addProject,viewproject,dashboard,deleteProject,updateProject}

@@ -1,5 +1,5 @@
 import express from "express"
-import {signup,login,addProject, viewproject, dashboard,deleteProject} from "../Controller/Controller.js";
+import {signup,login,addProject, viewproject, dashboard,deleteProject, updateProject} from "../Controller/Controller.js";
 import verifyToken from "../verifyToken.js";
 
 
@@ -10,5 +10,6 @@ router.post("/projects",verifyToken,addProject)
 router.get("/dashboard",verifyToken,dashboard)
 router.get("/projects",verifyToken,viewproject)
 router.delete("/projects/:id",verifyToken,deleteProject)
+router.put("/projects/:id",verifyToken,updateProject)
 
 export default router
