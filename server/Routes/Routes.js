@@ -4,9 +4,11 @@ import verifyToken from "../verifyToken.js";
 
 
 const router = express.Router()
-router.post("/api/signup",signup);
-router.post("/api/login",login)
-router.post("/api/projects",verifyToken,addProject)
-router.get("/api/dashboard",verifyToken,dashboard)
-router.get("/api/projects",verifyToken,viewproject)
-router.delete("/api/projects/:id",verifyToken,deleteProject)
+router.post("/signup",signup);
+router.post("/login",login)
+router.post("/projects",verifyToken,addProject)
+router.get("/dashboard",verifyToken,dashboard)
+router.get("/projects",verifyToken,viewproject)
+router.delete("/projects/:id",verifyToken,deleteProject)
+
+export default router
