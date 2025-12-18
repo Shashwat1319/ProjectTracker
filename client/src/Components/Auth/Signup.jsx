@@ -32,21 +32,51 @@ const Signup = () => {
     }
   return (
     <>
-    <div className="signup">
-        <div className="row">
-            <div className="col-4"></div>
-            <div className="col-3 mt-5 border mb-5 mx-auto">
-                <h1 className='text-center '>Signup</h1>
-                <form onSubmit={handleSubmit}>
-                <input type="email"  className='form-control mt-2' placeholder='Enter Email' required onChange={(e)=>setEmail(e.target.value)} value={email} />
-                <input type="password" className='form-control mt-2'  placeholder='Enter Password' required  onChange={(e)=>setPassword(e.target.value)} value={password} />
-                <input type="submit"  className='form-control btn btn-success mb-3 mt-3' value="Signup" />
-        </form>
+   <div className="row">
+        <div className="col-4"></div>
+        <div className="col-6 mt-5 Signup me-4">
+            <div class="card login-card p-4 bg-white">
+              <div class="text-center mb-4">
+                <h3 class="fw-bold">Welcome Back</h3>
+                <p class="text-muted mb-0">Signup to your account</p>
+              </div>
+
+              <form onSubmit={handleSubmit}>
+                {/* <!-- Email --> */}
+                <div class="form-floating mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="name@example.com"
+                    onChange={(e)=>setEmail(e.target.value)}
+                    value={email}
+                    required
+                  />
+                  <label for="email">Email address</label>
+                </div>
+
+                {/* <!-- Password --> */}
+                <div class="form-floating mb-3">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                    onChange={(e)=>setPassword(e.target.value)}
+                    value={password}
+                    required
+                  />
+                  <label for="password">Password</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                  Signup
+                </button>
+              </form>
             </div>
-            <div className="col-4"></div>
+          </div>
         </div>
-        
-    </div>
+        <div className="col-3"></div>
     </>
   )
 }
