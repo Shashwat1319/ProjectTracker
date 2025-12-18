@@ -54,7 +54,7 @@ removeExpiredToken();
           <Route path="projectdetails/:id" element={<ProjectDetails />} />
         </Route>
           
-        
+        <Route path='*' element="Page not found"/>
       </Routes>
       </BrowserRouter>
     </>
