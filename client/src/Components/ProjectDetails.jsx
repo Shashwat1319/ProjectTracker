@@ -10,7 +10,7 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
-  const [activity,SetActivity] = useState("")
+    const [activity,setActivity] = useState("")
 
 const [form, setForm] = useState({
   Client: state.Client,
@@ -93,7 +93,7 @@ const UpdateProject = async () => {
 
 const AddActivity=async()=>{
   try{
-    const response = await axios.post(`https://projecttracker-zke1.onrender.com/api/projects/${id}/activity`,{activity}, {
+    const response = await axios.post(`https://projecttracker-zke1.onrender.com/api/projects/${id}`,{activity}, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -183,7 +183,7 @@ const AddActivity=async()=>{
     <hr />
     <div className="row">
         <div className="col-sm-9">
-            <input type="text" className="form-control" placeholder="Enter New Activity" onChange={(e)=>SetActivity(e.target.value)} value={activity}/>
+            <input type="text" className="form-control" placeholder="Enter New Activity" onChange={(e)=>setActivity(e.target.value)} value={activity}/>
         </div>
         <div className="col-sm-3">
           <button className="btn btn-success" onClick={AddActivity}>Add New Activity</button>
