@@ -252,4 +252,24 @@ const addActivity = async (req, res) => {
   }
 };
 
-export  {signup,login,addProject,viewproject,dashboard,deleteProject,updateProject,addActivity}
+
+const getActivities = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const logs = await ActivityLogsModal.find({ ProjectId: id }).sort({ createdAt: -1 }); 
+
+    res.status(200).json({
+      success: true,
+      data: logs,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+};
+
+
+export  {signup,login,addProject,viewproject,dashboard,deleteProject,updateProject,addActivity,getActivities}

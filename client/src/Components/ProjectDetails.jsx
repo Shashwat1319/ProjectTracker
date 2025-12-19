@@ -1,4 +1,4 @@
-import React from "react";   // 🔴 THIS IS REQUIRED
+import React, { useEffect } from "react";   // 🔴 THIS IS REQUIRED
 
 import axios from "axios";
 import { useLocation, useParams, useNavigate} from "react-router-dom";
@@ -10,7 +10,8 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
-    const [activity,setActivity] = useState("")
+  const [activity,setActivity] = useState("")
+  const [activities,setActivities] = useState([])
 
 const [form, setForm] = useState({
   Client: state.Client,
@@ -24,6 +25,28 @@ const handleChange = (e) => {
   const { name, value } = e.target;
   setForm({ ...form, [name]: value });
 };
+
+
+
+useEffect(()=>{
+const fetchLogs = async () => {
+  try {
+    const response = await axios.get(
+      `https://projecttracker-zke1.onrender.com/api/projects/${id}/logs`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    setActivities(response.data.data); // store in state
+  } catch (err) {
+    console.error(err);
+  }
+};
+fetchLogs()
+},[])
+
 
   if (!state) {
     return (
@@ -99,7 +122,13 @@ const AddActivity=async()=>{
     }
     
   })
-  console.log(response.data)
+  if(response.status == 200){
+    Swal.fire({
+      title:"Activity",
+      text:response.data.msg,
+      icon:"success"
+    })
+  }
   }catch(err){
     Swal.fire({
       title:"Error",
@@ -189,6 +218,16 @@ const AddActivity=async()=>{
           <button className="btn btn-success" onClick={AddActivity}>Add New Activity</button>
         </div>
     </div>
+
+    {activities.map(log => (
+  <div key={log._id} className="border p-2 mb-2">
+    <div>{log.message}</div>
+    <small className="text-muted">
+      {new Date(log.createdAt).toLocaleString()}
+    </small>
+  </div>
+))}
+
     </>
     );
 };
