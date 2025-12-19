@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React from "react";   // 🔴 THIS IS REQUIRED
+
+import { useEffect } from 'react'
 import { Outlet,useNavigate } from 'react-router-dom';
 
 const Dashboared = () => {

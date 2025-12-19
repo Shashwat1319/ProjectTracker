@@ -1,7 +1,9 @@
+import React from "react";   // 🔴 THIS IS REQUIRED
+
 import axios from "axios";
 import { useLocation, useParams, useNavigate} from "react-router-dom";
 import Swal from "sweetalert2";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ProjectDetails = () => {
   const { state } = useLocation();

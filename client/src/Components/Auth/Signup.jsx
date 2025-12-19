@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from "react";   // 🔴 THIS IS REQUIRED
+import { useState } from 'react'
 import axios from "axios"
 import Swal from "sweetalert2"
 const Signup = () => {
@@ -35,18 +36,18 @@ const Signup = () => {
    <div className="row">
         <div className="col-4"></div>
         <div className="col-6 mt-5 Signup me-4">
-            <div class="card login-card p-4 bg-white">
-              <div class="text-center mb-4">
-                <h3 class="fw-bold">Welcome Back</h3>
-                <p class="text-muted mb-0">Signup to your account</p>
+            <div className="card login-card p-4 bg-white">
+              <div className="text-center mb-4">
+                <h3 className="fw-bold">Welcome Back</h3>
+                <p className="text-muted mb-0">Signup to your account</p>
               </div>
 
               <form onSubmit={handleSubmit}>
                 {/* <!-- Email --> */}
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     placeholder="name@example.com"
                     onChange={(e)=>setEmail(e.target.value)}
@@ -57,10 +58,10 @@ const Signup = () => {
                 </div>
 
                 {/* <!-- Password --> */}
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="password"
                     placeholder="Password"
                     onChange={(e)=>setPassword(e.target.value)}
@@ -69,7 +70,7 @@ const Signup = () => {
                   />
                   <label for="password">Password</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-2">
+                <button type="submit" className="btn btn-primary w-100 py-2">
                   Signup
                 </button>
               </form>

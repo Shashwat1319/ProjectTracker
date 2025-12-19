@@ -1,4 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
+import React from "react";   // 🔴 THIS IS REQUIRED
+
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");

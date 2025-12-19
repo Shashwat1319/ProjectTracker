@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react";   // 🔴 THIS IS REQUIRED
+
 import { Navigate } from "react-router-dom"
 const Public = ({children}) => {
     const token = localStorage.getItem("token")
