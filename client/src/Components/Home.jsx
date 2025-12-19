@@ -1,12 +1,10 @@
 
 import React from "react";   
-
+import Carousal from "./Carousal";
 const Home = () => {
   return (
     <>
-    <h1 className='text-center mt-5'>
-        Client Project Tracker
-    </h1>
+  <Carousal/>
     </>
   )
 }
