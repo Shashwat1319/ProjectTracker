@@ -42,7 +42,7 @@ const Signup = () => {
       <div className="col-6 mt-5 Signup me-4">
         <div className="card login-card p-4 bg-white">
           <div className="text-center mb-4">
-            <h3 className="fw-bold">Welcome Back</h3>
+            <h3 className="fw-bold">Signup New Account</h3>
             <p className="text-muted mb-0">Signup to your account</p>
           </div>
 
@@ -57,7 +57,7 @@ const Signup = () => {
                 value={email}
                 required
               />
-              <label htmlFor="email">Email address</label>
+              <label>Email address</label>
             </div>
 
             <div className="form-floating mb-3">
@@ -70,7 +70,7 @@ const Signup = () => {
                 value={password}
                 required
               />
-              <label htmlFor="password">Password</label>
+              <label>Password</label>
             </div>
 
             <button type="submit" className="btn btn-primary w-100 py-2">
