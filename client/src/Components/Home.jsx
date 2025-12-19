@@ -1,5 +1,5 @@
 
-import React from "react";   // 🔴 THIS IS REQUIRED
+import React from "react";   
 
 const Home = () => {
   return (

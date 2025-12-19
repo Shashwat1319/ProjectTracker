@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import React from "react";   // 🔴 THIS IS REQUIRED
+import React from "react";   
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="navbar-brand" to="/">
-          Navbar
+          Project Tracker
         </Link>
         <button
           className="navbar-toggler"

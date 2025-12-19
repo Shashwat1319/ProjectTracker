@@ -1,4 +1,4 @@
-import {userModal,addProjectModal} from "../DbModal/DbModal.js";
+import {userModal,addProjectModal,} from "../DbModal/DbModal.js";
 import bcrypt from "bcryptjs";
 import jwt from"jsonwebtoken"
 
@@ -209,5 +209,47 @@ const updateProject=async(req,res)=>{
       })
     }
 }
+const addActivity = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { activity } = req.body;
 
-export  {signup,login,addProject,viewproject,dashboard,deleteProject,updateProject}
+    if (!activity) {
+      return res.status(400).json({
+        success: false,
+        msg: "Activity is required",
+      });
+    }
+
+    const project = await addProjectModal.findOne({
+      _id: id,
+      userid: req.user._id,
+    });
+
+    if (!project) {
+      return res.status(404).json({
+        success: false,
+        msg: "Project not found",
+      });
+    }
+    const log = await ActivityLogsModal.create({
+      ProjectId: id,
+      message: activity,
+    });
+
+    res.status(201).json({
+      success: true,
+      msg: "Activity added successfully",
+      data: log,
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      msg: "Internal Server Error",
+    });
+  }
+};
+
+export  {signup,login,addProject,viewproject,dashboard,deleteProject,updateProject,addActivity}

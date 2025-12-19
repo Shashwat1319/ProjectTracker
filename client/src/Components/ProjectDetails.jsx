@@ -10,6 +10,7 @@ const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token")
+  const [activity,SetActivity] = useState("")
 
 const [form, setForm] = useState({
   Client: state.Client,
@@ -34,6 +35,9 @@ const handleChange = (e) => {
       </div>
     );
   }
+
+
+
   const DeleteProject =()=>{
         Swal.fire({
           title:"Delete Project",
@@ -87,7 +91,28 @@ const UpdateProject = async () => {
   }
 };
 
+const AddActivity=async()=>{
+  try{
+    const response = await axios.post(`https://projecttracker-zke1.onrender.com/api/projects/${id}/activity`,{activity}, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+    
+  })
+  console.log(response.data)
+  }catch(err){
+    Swal.fire({
+      title:"Error",
+      text:"Internal Server error",
+      icon:"error"
+    })
+  }
+}
+
+
+
   return (
+    <>
     <div className="card shadow-lg border-0">
       <div className="card-body p-4">
 
@@ -137,15 +162,15 @@ const UpdateProject = async () => {
 
           <div className="row">
             <div className="col-3"><div className="btn btn-success p-3 mt-4 w-100" onClick={UpdateProject}>Update</div></div>
-            <div className="col-3"></div>
-            <div className="col-3"></div>
+            <div className="col-5"><h1 className="text-center mt-4">Activity Log</h1></div>
+            <div className="col-1"></div>
             <div className="col-3"><div className="btn btn-danger p-3 mt-4 w-100" onClick={DeleteProject}>Delete</div></div>
           </div>
           
         </div>
 
         <hr className="my-4" />
-
+   
         <div className="text-end">
           <button className="btn btn-outline-secondary" onClick={() => navigate(-1)}>
             ← Back
@@ -153,7 +178,19 @@ const UpdateProject = async () => {
         </div>
       </div>
     </div>
-  );
+    <hr />
+    <h1 className="text-center">Activity Log</h1>
+    <hr />
+    <div className="row">
+        <div className="col-sm-9">
+            <input type="text" className="form-control" placeholder="Enter New Activity" onChange={(e)=>SetActivity(e.target.value)} value={activity}/>
+        </div>
+        <div className="col-sm-3">
+          <button className="btn btn-success" onClick={AddActivity}>Add New Activity</button>
+        </div>
+    </div>
+    </>
+    );
 };
 
 /* Reusable row component */
