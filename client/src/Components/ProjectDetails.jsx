@@ -93,7 +93,7 @@ const UpdateProject = async () => {
 
 const AddActivity=async()=>{
   try{
-    const response = await axios.post(`https://projecttracker-zke1.onrender.com/api/projects/${id}`,{activity}, {
+    const response = await axios.post(`https://projecttracker-zke1.onrender.com/api/projects/${id}/logs`,{activity}, {
     headers: {
       Authorization: `Bearer ${token}`
     }

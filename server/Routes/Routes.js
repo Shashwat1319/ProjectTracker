@@ -11,6 +11,6 @@ router.get("/dashboard",verifyToken,dashboard)
 router.get("/projects",verifyToken,viewproject)
 router.delete("/projects/:id",verifyToken,deleteProject)
 router.put("/projects/:id",verifyToken,updateProject)
-router.post("/projects/:id",verifyToken,addActivity)
+router.post("/projects/:id/logs",verifyToken,addActivity)
 
 export default router
