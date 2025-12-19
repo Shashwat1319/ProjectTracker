@@ -122,13 +122,14 @@ const AddActivity=async()=>{
     }
     
   })
-  if(response.status == 200){
+  if(response.status == 201){
     Swal.fire({
       title:"Activity",
       text:response.data.msg,
       icon:"success"
     })
   }
+  setActivity("")
   }catch(err){
     Swal.fire({
       title:"Error",
@@ -218,7 +219,7 @@ const AddActivity=async()=>{
           <button className="btn btn-success" onClick={AddActivity}>Add New Activity</button>
         </div>
     </div>
-
+      <hr />
     {activities.map(log => (
   <div key={log._id} className="border p-2 mb-2">
     <div>{log.message}</div>

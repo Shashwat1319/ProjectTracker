@@ -214,7 +214,7 @@ const addActivity = async (req, res) => {
     const { id } = req.params;
     const { activity } = req.body;
 
-    if (!activity) {
+    if (!activity || activity.trim()) {
       return res.status(400).json({
         success: false,
         msg: "Activity is required",
