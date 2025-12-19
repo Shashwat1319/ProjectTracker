@@ -19,8 +19,8 @@ const Navbar = () => {
     <button
       className="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"       // ✅ Note: "data-bs-toggle"
-      data-bs-target="#navbarNav"    // ✅ Note: "data-bs-target"
+      data-bs-toggle="collapse"      
+      data-bs-target="#navbarNav"    
       aria-controls="navbarNav"
       aria-expanded="false"
       aria-label="Toggle navigation"

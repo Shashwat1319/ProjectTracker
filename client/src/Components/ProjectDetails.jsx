@@ -140,97 +140,90 @@ const AddActivity=async()=>{
 }
 
 
-
-  return (
-    <>
+return (
+  <>
     <div className="card shadow-lg border-0">
-      <div className="card-body p-4">
+      <div className="card-body p-3 p-md-4">
 
         <h2 className="text-center fw-bold mb-4">Project Details</h2>
 
         <div className="row g-3">
           <Detail label="Client" value={
-  <input
-    className="form-control"
-    name="Client"
-    value={form.Client}
-    onChange={handleChange}
-  />
-} />
-<Detail label="Project" value={
-  <input
-    className="form-control"
-    name="Project"
-    value={form.Project}
-    onChange={handleChange}
-  />
-} />
-<Detail label="Status" value={
-  <input
-    className="form-control"
-    name="Status"
-    value={form.Status}
-    onChange={handleChange}
-  />
-} />
-<Detail label="Budget" value={
-  <input
-    className="form-control"
-    name="Budget"
-    value={form.Budget}
-    onChange={handleChange}
-  />
-} />
-<Detail label="Due Date" value={
-  <input
-    className="form-control"
-    name="DueDate"
-    value={form.DueDate}
-    onChange={handleChange}
-  />
-} />
+            <input className="form-control" name="Client" value={form.Client} onChange={handleChange} />
+          } />
 
-          <div className="row">
-            <div className="col-3"><div className="btn btn-success p-3 mt-4 w-100" onClick={UpdateProject}>Update</div></div>
-            <div className="col-5"><h1 className="text-center mt-4">Activity Log</h1></div>
-            <div className="col-1"></div>
-            <div className="col-3"><div className="btn btn-danger p-3 mt-4 w-100" onClick={DeleteProject}>Delete</div></div>
-          </div>
-          
+          <Detail label="Project" value={
+            <input className="form-control" name="Project" value={form.Project} onChange={handleChange} />
+          } />
+
+          <Detail label="Status" value={
+            <input className="form-control" name="Status" value={form.Status} onChange={handleChange} />
+          } />
+
+          <Detail label="Budget" value={
+            <input className="form-control" name="Budget" value={form.Budget} onChange={handleChange} />
+          } />
+
+          <Detail label="Due Date" value={
+            <input className="form-control" name="DueDate" value={form.DueDate} onChange={handleChange} />
+          } />
         </div>
 
-        <hr className="my-4" />
-   
-        <div className="text-end">
+        {/* Buttons */}
+        <div className="row mt-4 g-2">
+          <div className="col-12 col-md-6">
+            <button className="btn btn-success w-100" onClick={UpdateProject}>
+              Update Project
+            </button>
+          </div>
+
+          <div className="col-12 col-md-6">
+            <button className="btn btn-danger w-100" onClick={DeleteProject}>
+              Delete Project
+            </button>
+          </div>
+        </div>
+
+        <div className="text-center mt-3">
           <button className="btn btn-outline-secondary" onClick={() => navigate(-1)}>
             ← Back
           </button>
         </div>
       </div>
     </div>
-    <hr />
-    <h1 className="text-center">Activity Log</h1>
-    <hr />
-    <div className="row">
-        <div className="col-sm-9">
-            <input type="text" className="form-control" placeholder="Enter New Activity" onChange={(e)=>setActivity(e.target.value)} value={activity}/>
-        </div>
-        <div className="col-sm-3">
-          <button className="btn btn-success" onClick={AddActivity}>Add New Activity</button>
-        </div>
-    </div>
-      <hr />
-    {activities.map(log => (
-  <div key={log._id} className="border p-2 mb-2">
-    <div>{log.message}</div>
-    <small className="text-muted">
-      {new Date(log.createdAt).toLocaleString()}
-    </small>
-  </div>
-))}
 
-    </>
-    );
+    {/* Activity Section */}
+    <div className="mt-4">
+      <h4 className="text-center mb-3">Activity Log</h4>
+
+      <div className="row g-2 mb-3">
+        <div className="col-12 col-md-9">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Enter new activity"
+            value={activity}
+            onChange={(e) => setActivity(e.target.value)}
+          />
+        </div>
+        <div className="col-12 col-md-3">
+          <button className="btn btn-success w-100" onClick={AddActivity}>
+            Add Activity
+          </button>
+        </div>
+      </div>
+
+      {activities.map((log) => (
+        <div key={log._id} className="border rounded p-2 mb-2">
+          <div className="fw-semibold">{log.message}</div>
+          <small className="text-muted">
+            {new Date(log.createdAt).toLocaleString()}
+          </small>
+        </div>
+      ))}
+    </div>
+  </>
+);
 };
 
 /* Reusable row component */

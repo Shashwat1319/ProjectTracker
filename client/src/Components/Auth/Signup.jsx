@@ -1,13 +1,27 @@
-import React, { useState } from "react"; 
+import React from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import  { useState } from "react"
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // basic validation (minimum length only)
+    if (password.length < 6) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Password",
+        text: "Password must be at least 6 characters long",
+      });
+      return;
+    }
+
+    setLoading(true);
     try {
       const response = await axios.post(
         "https://projecttracker-zke1.onrender.com/api/signup",
@@ -26,60 +40,71 @@ const Signup = () => {
           text: response.data.msg,
           icon: "success",
         });
+        setEmail("");
+        setPassword("");
       }
     } catch (err) {
       Swal.fire({
-        title: "Error",
-        text: err.message,
+        title: "Server Error",
+        text: err.response?.data?.msg || "Something went wrong",
         icon: "error",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="row">
-      <div className="col-4"></div>
-      <div className="col-6 mt-5 Signup me-4">
-        <div className="card login-card p-4 bg-white">
-          <div className="text-center mb-4">
-            <h3 className="fw-bold">Signup New Account</h3>
-            <p className="text-muted mb-0">Signup to your account</p>
+    <div className="container mt-5">
+      <div className="row justify-content-center">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+          <div className="card shadow-sm p-4">
+            <div className="text-center mb-4">
+              <h3 className="fw-bold">Create Account</h3>
+              <p className="text-muted mb-0">Signup to get started</p>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              {/* Email */}
+              <div className="form-floating mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <label htmlFor="email">Email address</label>
+              </div>
+
+              {/* Password */}
+              <div className="form-floating mb-3">
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <label htmlFor="password">Password</label>
+              </div>
+
+              {/* Button */}
+              <button
+                type="submit"
+                className="btn btn-primary w-100 py-2"
+                disabled={loading}
+              >
+                {loading ? "Creating account..." : "Signup"}
+              </button>
+            </form>
           </div>
-
-          <form onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="name@example.com"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                required
-              />
-              <label>Email address</label>
-            </div>
-
-            <div className="form-floating mb-3">
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                required
-              />
-              <label>Password</label>
-            </div>
-
-            <button type="submit" className="btn btn-primary w-100 py-2">
-              Signup
-            </button>
-          </form>
         </div>
       </div>
-      <div className="col-3"></div>
     </div>
   );
 };
