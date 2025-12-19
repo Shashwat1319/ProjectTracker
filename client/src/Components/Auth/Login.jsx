@@ -33,7 +33,7 @@ const Login = () => {
           text: err.response.data.msg,
           icon: "error",
         });
-      } else {
+      } else{
         Swal.fire({
           title: "Server Error",
           text: "Server is not Responsing",
