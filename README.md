@@ -1,31 +1,31 @@
 # Client Project Tracker
 A simple web application to manage client projects and track activities in real-time.
 
-Features
+## Features
 
-Add, view, update, and delete projects
+- Add, view, update, and delete projects
 
-Track project status: Planned / In Progress / Completed
+- Track project status: Planned / In Progress / Completed
 
-Search and filter projects by client or name
+- Search and filter projects by client or name
 
-Add activity logs with timestamp
+- Add activity logs with timestamp
 
-Responsive design for desktop and mobile
+- Responsive design for desktop and mobile
 
 ## Technologies
 
--React
+- React
 
--Bootstrap
+- Bootstrap
 
--JavaScript
+- JavaScript
 
--Node.js
+- Node.js
 
--Express.js
+- Express.js
 
--MongoDB
+- MongoDB
 
 ## Deployment
 
