@@ -5,7 +5,7 @@ const Carousel = () => {
     <section>
       <div className="container-fluid">
         <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-          <div className="carousel-inner">
+          <div className="carousel-inner carouselheight">
             <div className="carousel-item active">
               <img className="d-block w-100" src="/carousel1.jpg" alt="First slide" />
             </div>
@@ -13,7 +13,7 @@ const Carousel = () => {
               <img className="d-block w-100" src="/login.jpg" alt="Second slide" />
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src="/carousel3.jpg" alt="Third slide" />
+              <img className="d-block w-100" src="/carousel1.jpg" alt="Third slide" />
             </div>
           </div>
           <button

@@ -41,7 +41,7 @@ const Navbar = () => {
         ) : (
           <>
             <li className="nav-item">
-              <button className="btn btn-primary me-2" onClick={() => navigate("/login")}>
+              <button className="btn" onClick={() => navigate("/login")}>
                 Login
               </button>
             </li>
